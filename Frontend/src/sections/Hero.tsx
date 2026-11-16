@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "motion/react";
 import Container from "../components/layout/Container";
 import Button from "../components/ui/Button";
 import PortraitCard from "../components/ui/PortraitCard";
@@ -35,6 +36,10 @@ function ExpertiseIcon({ kind }: { kind: string }) {
 }
 
 function Hero() {
+  const prefersReducedMotion = useReducedMotion() ?? false;
+  const introduction =
+    "I'm a software engineer with nearly 2 years of experience and a curiosity for how things work, from the systems behind an application to the experiences people interact with.";
+
   return (
     <section
       id="home"
@@ -49,7 +54,7 @@ function Hero() {
         <div className="grid items-center gap-8 lg:min-h-[490px] lg:grid-cols-[1fr_1.1fr] lg:gap-5 xl:min-h-[510px]">
           <div className="relative z-10 py-4 lg:py-0">
             <Reveal>
-              <p className="mb-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-highlight">
+              <h1 className="mb-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-highlight">
                 01 / Hi, I&apos;m Anushka
                 <svg
                   aria-hidden="true"
@@ -64,24 +69,32 @@ function Hero() {
                   <path d="M20 4c-8 0-13 4-13 10a6 6 0 0 0 6 6c6 0 10-8 7-16Z" />
                   <path d="M4 21c3-6 7-9 12-12M10 15l-1-4m5 0 3 1" />
                 </svg>
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <h1 className="max-w-[620px] text-[clamp(2.2rem,5.4vw,4.35rem)] leading-[1.04] tracking-tight">
-                Software engineer
-                <br />
-                building <em className="font-normal text-highlight">useful</em>
-                <br />
-                things with data.
               </h1>
             </Reveal>
 
             <Reveal delay={0.2}>
-              <p className="mt-5 max-w-[540px] text-sm leading-6 text-text-secondary md:text-base md:leading-7">
-                I build web apps, APIs, and data systems. At Dfy Graviti
-                Technologies, I help build a platform that helps people
-                understand what&apos;s happening at sea.
+              <p
+                aria-label={introduction}
+                className="mt-5 max-w-[540px] text-sm leading-6 text-text-secondary md:text-base md:leading-7"
+              >
+                {introduction.split(" ").map((word, index) => (
+                  <motion.span
+                    key={`${word}-${index}`}
+                    aria-hidden="true"
+                    initial={
+                      prefersReducedMotion ? false : { opacity: 0, y: 8 }
+                    }
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: prefersReducedMotion ? 0 : 0.24,
+                      delay: prefersReducedMotion ? 0 : index * 0.025,
+                      ease: "easeOut",
+                    }}
+                    className="mr-[0.25em] inline-block"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
               </p>
             </Reveal>
 
