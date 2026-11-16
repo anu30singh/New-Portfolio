@@ -1,0 +1,28 @@
+:root {
+  /* Dark theme */
+  --background: #0D1517;
+  --surface: #152023;
+  --surface-secondary: #1C292B;
+
+  --text-primary: #F3F0E7;
+  --text-secondary: #A5B0A9;
+
+  --accent: #7F9C75;
+  --highlight: #C5E9A0;
+
+  --border: rgba(243, 240, 231, 0.12);
+}
+
+[data-theme="light"] {
+  --background: #F3F0E7;
+  --surface: #FFFFFF;
+  --surface-secondary: #E8EDE5;
+
+  --text-primary: #17211F;
+  --text-secondary: #65716A;
+
+  --accent: #637F5D;
+  --highlight: #A8CA85;
+
+  --border: rgba(23, 33, 31, 0.12);
+}
