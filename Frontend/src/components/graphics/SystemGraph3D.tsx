@@ -10,11 +10,11 @@ import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 
 type NodeName =
-  | "APIs"
+  | "Backend"
   | "Databases"
-  | "Software"
   | "Product"
-  | "DevOps";
+  | "DevOps"
+  | "System Architecture";
 
 type GraphNodeData = {
   name: NodeName;
@@ -24,11 +24,11 @@ type GraphNodeData = {
 type GraphPosition = GraphNodeData["position"];
 
 const nodes: GraphNodeData[] = [
-  { name: "APIs", position: [-2.45, 1.5, 0] },
+  { name: "Backend", position: [-3.15, 2.1, 0] },
   { name: "Databases", position: [2.45, 1.5, 0] },
-  { name: "Software", position: [2.55, -1.3, 0] },
   { name: "Product", position: [0, -2.85, 0] },
   { name: "DevOps", position: [-2.55, -1.3, 0] },
+  { name: "System Architecture", position: [0, 3.05, 0] },
 ];
 
 const satelliteNodes: GraphPosition[] = [
@@ -84,9 +84,9 @@ const nodeDetails: Record<NodeName, {
   description: string;
   technologies: string;
 }> = {
-  APIs: {
-    title: "Backend Engineering",
-    description: "Building web applications, backend services and REST APIs.",
+  Backend: {
+    title: "Backend Development",
+    description: "Building application logic, backend services, and APIs.",
     technologies: "Java · Node.js · Express · Python",
   },
   Databases: {
@@ -94,32 +94,32 @@ const nodeDetails: Record<NodeName, {
     description: "Working with relational databases and time-series data.",
     technologies: "PostgreSQL · TimescaleDB · MongoDB",
   },
-  Systems: {
-    title: "Systems Engineering",
-    description: "Exploring scalable systems, observability and reliable software.",
-    technologies: "Docker · Linux · OpenTelemetry",
-  },
-  Users: {
+  Product: {
     title: "Product & User Experience",
     description: "Combining engineering with interface design and product thinking.",
     technologies: "React · Vue.js · UI/UX",
   },
-  Maps: {
-    title: "Geospatial Engineering",
-    description: "Working with spatial data and real-world operational applications.",
-    technologies: "GIS · Spatial Data · Maritime Systems",
+  DevOps: {
+    title: "DevOps & Infrastructure",
+    description: "Building, deploying, and supporting reliable software.",
+    technologies: "Docker · Linux · OpenTelemetry",
+  },
+  "System Architecture": {
+    title: "System Architecture",
+    description: "Exploring how software systems fit together and scale.",
+    technologies: "APIs · Databases · Distributed Systems",
   },
 };
 
 const nodeIconPaths: Record<NodeName, string> = {
-  APIs: "m8 8-4 4 4 4m8-8 4 4-4 4m-5 2 2-12",
+  Backend: "m8 8-4 4 4 4m8-8 4 4-4 4m-5 2 2-12",
   Databases:
     "M12 3c-4.4 0-8 1.3-8 3s3.6 3 8 3 8-1.3 8-3-3.6-3-8-3Zm-8 3v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6m-16 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6",
-  Systems: "M3 5h18v13H3zM8 22h8m-4-4v4",
-  Users:
+  Product:
     "M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m6-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm6-7.8a4 4 0 0 1 0 7.6m2 4.2a4 4 0 0 1 2 3.5V21",
-  Maps:
-    "M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Zm-5 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
+  DevOps: "M3 5h18v13H3zM8 22h8m-4-4v4",
+  "System Architecture":
+    "m8 8-4 4 4 4m8-8 4 4-4 4m-5 2 2-12",
 };
 
 function GraphNode({
