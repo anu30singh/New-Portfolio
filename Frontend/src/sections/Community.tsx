@@ -26,7 +26,7 @@ const communities = [
     number: "02",
     role: "Core Team",
     name: "Reskilll",
-    period: "Mar — Apr 2023",
+    period: "Mar 2023 — Apr 2023",
     type: "CLOUD LEARNING PROGRAM",
     description:
       "I helped run Cohort 1.0, where 150+ women learned Microsoft Azure and workplace skills. I coordinated activities, supported learners, and helped promote the program.",

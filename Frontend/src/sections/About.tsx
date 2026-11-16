@@ -173,7 +173,7 @@ export default function About() {
         </Reveal>
 
         {/* Introduction */}
-        <div className="grid gap-14 md:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid max-w-3xl gap-14">
 
           <Reveal>
             <div>
@@ -203,30 +203,6 @@ export default function About() {
             </div>
           </Reveal>
 
-          {/* Personal philosophy */}
-          <Reveal delay={0.15}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-10">
-              <span className="font-mono text-xs tracking-widest text-[var(--accent)]">
-                HOW I WORK
-              </span>
-
-              <div className="my-12">
-                <p className="font-serif text-3xl leading-snug text-[var(--text-primary)] md:text-4xl">
-                  First, understand the problem.
-                  <span className="italic text-[var(--accent)]">
-                    {" "}Then find a clear solution.
-                  </span>
-                  Build it well.
-                </p>
-              </div>
-
-              <div className="border-t border-[var(--border)] pt-5">
-                <p className="text-sm leading-6 text-[var(--text-secondary)]">
-                  I stay curious, keep learning, and improve as I go.
-                </p>
-              </div>
-            </div>
-          </Reveal>
         </div>
 
         <section

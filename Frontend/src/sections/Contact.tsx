@@ -2,6 +2,8 @@
 import Container from "../components/layout/Container";
 import Reveal from "../components/ui/Reveal";
 
+const contactEmail = "anushka30singh07@gmail.com";
+
 const contactLinks = [
   {
     label: "LINKEDIN",
@@ -12,11 +14,6 @@ const contactLinks = [
     label: "GITHUB",
     value: "See my projects",
     href: "https://github.com/anu30singh",
-  },
-  {
-    label: "EMAIL",
-    value: "Email me",
-    href: "mailto:anushkasinghdev@outlook.com",
   },
 ];
 
@@ -50,12 +47,20 @@ export default function Contact() {
               </p>
 
               <a
-                href="mailto:anushkasinghdev@outlook.com"
+                href={`mailto:${contactEmail}`}
                 className="mt-10 inline-flex items-center gap-4 rounded-full bg-[var(--highlight)] px-7 py-4 text-sm font-semibold text-[#17211F] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 Send me an email
                 <span className="text-lg">↗</span>
               </a>
+              <p className="mt-5">
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="text-sm text-[var(--text-secondary)] underline decoration-[var(--accent)] underline-offset-4 transition-colors hover:text-[var(--highlight)]"
+                >
+                  {contactEmail}
+                </a>
+              </p>
             </div>
 
             <div className="relative z-10 mt-20 grid gap-8 border-t border-[var(--border)] pt-8 sm:grid-cols-3">
@@ -63,8 +68,8 @@ export default function Contact() {
                 <a
                   key={link.label}
                   href={link.href}
-                  target={link.label === "EMAIL" ? undefined : "_blank"}
-                  rel={link.label === "EMAIL" ? undefined : "noreferrer"}
+                  target="_blank"
+                  rel="noreferrer"
                   className="group"
                 >
                   <p className="font-mono text-[10px] tracking-[0.2em] text-[var(--accent)]">
