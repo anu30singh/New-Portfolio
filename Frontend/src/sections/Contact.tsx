@@ -91,14 +91,12 @@ export default function Contact() {
             <p className="font-serif text-xl text-[var(--text-primary)]">
               A.
             </p>
-            <p className="mt-1 text-xs text-[var(--text-secondary)]">
-              I build software to solve real problems.
-            </p>
+            
           </div>
 
           <div className="flex flex-wrap items-center gap-6">
             <span className="font-mono text-[10px] tracking-wider text-[var(--text-secondary)]">
-              MADE WITH CARE
+              BUILT WITH CARE BY ANUSHKA
             </span>
 
             <a
