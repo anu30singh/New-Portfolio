@@ -3,7 +3,7 @@ import { siGithub } from "simple-icons";
 import Container from "../components/layout/Container";
 import Reveal from "../components/ui/Reveal";
 
-const contactEmail = "anushka30singh07@gmail.com";
+const contactEmail = "singh.anushka3007@gmail.com";
 
 const contactLinks = [
   {
