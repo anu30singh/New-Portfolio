@@ -34,7 +34,7 @@ This portfolio is a reflection of my journey as a software engineer. It brings t
 Clone the repository:
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/anu30singh/New-Portfolio.git
 ```
 
 Navigate to the frontend directory:
