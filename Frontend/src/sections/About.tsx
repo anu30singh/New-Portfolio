@@ -66,6 +66,27 @@ const skillCategories = [
   "Tools",
 ] as const;
 
+const journeySteps = [
+  {
+    number: "01",
+    phase: "START",
+    label: "Web development",
+    description: "Built interfaces and shipped my first features.",
+  },
+  {
+    number: "02",
+    phase: "LEARNING TO SHIP",
+    label: "DevOps & deployment",
+    description: "Moved into production with Docker, Linux, and on-prem deployments.",
+  },
+  {
+    number: "03",
+    phase: "TODAY",
+    label: "Backend & data",
+    description: "Now focused on APIs, databases, and large-scale data processing.",
+  },
+] as const;
+
 type SkillCategory = (typeof skillCategories)[number];
 
 const technologyIcons: Record<string, Pick<SimpleIcon, "path" | "hex">> = {
@@ -160,34 +181,78 @@ export default function About() {
         <Reveal>
           <div className="max-w-5xl">
             <p className="max-w-3xl text-xl leading-8 text-[var(--text-primary)] md:text-2xl md:leading-9">
-              I began with web development and grew into software engineering.
-              Today, I focus on backend systems and data.
+              I started by building interfaces, learned how to ship and support
+              production systems, and now work deeper in backend and data.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {[
-                { number: "01", label: "Web development" },
-                { number: "02", label: "Software engineering" },
-                { number: "03", label: "Backend & data" },
-              ].map((step) => (
-                <div
-                  key={step.number}
-                  className="flex items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface)]/55 px-4 py-4"
-                >
-                  <span className="font-mono text-xs text-[var(--accent)]">
-                    {step.number}
-                  </span>
-                  <span className="text-sm font-medium text-[var(--text-primary)] sm:text-base">
-                    {step.label}
-                  </span>
-                </div>
-              ))}
+            <div className="relative mt-10">
+              <motion.div
+                aria-hidden="true"
+                initial={prefersReducedMotion ? false : { scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.9,
+                  ease: "easeOut",
+                }}
+                className="absolute bottom-8 left-5 top-8 w-px origin-top bg-[var(--accent)]/45 sm:hidden"
+              />
+              <motion.div
+                aria-hidden="true"
+                initial={prefersReducedMotion ? false : { scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.9,
+                  ease: "easeOut",
+                }}
+                className="absolute left-[16.666%] right-[16.666%] top-5 hidden h-px origin-left bg-[var(--accent)]/45 sm:block"
+              />
+              <ol className="relative grid gap-5 sm:grid-cols-3 sm:gap-6">
+                {journeySteps.map((step, index) => (
+                  <motion.li
+                    key={step.number}
+                    initial={
+                      prefersReducedMotion ? false : { opacity: 0, y: 16 }
+                    }
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.25 }}
+                    transition={{
+                      duration: prefersReducedMotion ? 0 : 0.55,
+                      delay: prefersReducedMotion ? 0 : index * 0.14,
+                      ease: "easeOut",
+                    }}
+                    className="relative flex gap-4 sm:block"
+                  >
+                    <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--background)] font-mono text-xs text-[var(--highlight)] ring-4 ring-[var(--background)] sm:mx-auto">
+                      {step.number}
+                    </span>
+
+                    <div className="min-w-0 flex-1 rounded-2xl border border-[var(--border)] bg-[var(--surface)]/70 p-5 sm:mt-8 sm:min-h-[190px]">
+                      <div className="mb-3 flex items-center justify-between gap-3">
+                        <p className="font-mono text-[10px] tracking-[0.16em] text-[var(--accent)]">
+                          {step.phase}
+                        </p>
+                        {index < journeySteps.length - 1 && (
+                          <span
+                            aria-hidden="true"
+                            className="text-[var(--accent)]"
+                          >
+                            →
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="font-serif text-xl text-[var(--text-primary)]">
+                        {step.label}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.li>
+                ))}
+              </ol>
             </div>
-
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--text-secondary)] sm:text-base">
-              I enjoy solving real problems and building reliable software
-              around them.
-            </p>
           </div>
         </Reveal>
 
