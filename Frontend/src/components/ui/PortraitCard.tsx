@@ -25,9 +25,14 @@ function PortraitCard() {
             <path d="M20 53V8m0 22C13 20 8 19 5 21c1 7 6 11 15 12m0-14c5-10 11-13 16-11-1 8-7 13-16 15m0 19c-6-8-11-9-15-6 2 6 7 9 15 9m0-12c6-8 11-9 15-6-2 6-7 9-15 9" />
           </svg>
           <div className="rotate-[-2deg] text-right font-serif text-[clamp(.65rem,1.3vw,.9rem)] italic leading-tight text-[#26312d]">
-            <p>Good code</p>
-            <p>Good coffee</p>
-            <p>Better problems</p>
+            <p>Always learning.</p>
+            <p>Always building.</p>
+            <p>
+              Pizza, always.
+              <span aria-hidden="true" className="ml-1 inline-block text-[0.75em] not-italic">
+                🍕
+              </span>
+            </p>
           </div>
         </div>
       </div>

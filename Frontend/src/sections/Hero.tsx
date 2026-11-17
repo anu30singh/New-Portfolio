@@ -6,7 +6,7 @@ import Reveal from "../components/ui/Reveal";
 import SystemGraph3D from "../components/graphics/SystemGraph3D";
 
 const expertise = [
-  { title: "Software", detail: "Backend · Frontend · APIs", icon: "code" },
+  { title: "Full Stack", detail: "Backend · Frontend · APIs", icon: "code" },
   { title: "Data", detail: "PostgreSQL · Analytics", icon: "database" },
   { title: "Design & tools", detail: "UI/UX · Docker · Linux", icon: "monitor" },
 ];
@@ -47,10 +47,29 @@ function Hero() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-48 top-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl"
-      />
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      >
+        <svg
+          className="absolute inset-0 h-full w-full"
+          viewBox="0 0 1200 560"
+          fill="none"
+          preserveAspectRatio="none"
+        >
+          <g
+            stroke="var(--accent)"
+            strokeOpacity="0.12"
+            strokeWidth="1"
+          >
+            <path d="M-80 265C-52 188 38 135 137 145c91 9 107 69 190 62 70-6 101-52 172-26 80 29 85 108 45 169" />
+            <path d="M-46 267C-20 204 54 164 138 172c76 8 103 62 185 54 69-7 103-45 159-22 60 24 68 84 39 134" />
+            <path d="M-9 268c24-49 83-77 148-71 65 6 94 52 173 46 64-5 100-38 145-18 43 19 52 63 29 101" />
+            <path d="M29 270c22-35 66-54 116-50 55 5 87 43 158 37 58-5 94-30 132-13 29 13 38 43 22 70" />
+            <path d="M73 272c18-23 51-34 88-31 45 4 78 34 140 29 50-4 86-22 116-8 17 8 25 23 19 41" />
+          </g>
+        </svg>
+      </div>
 
-      <Container>
+      <Container className="relative z-10">
         <div className="grid items-center gap-8 lg:min-h-[490px] lg:grid-cols-[1fr_1.1fr] lg:gap-5 xl:min-h-[510px]">
           <div className="relative z-10 py-4 lg:py-0">
             <Reveal>
@@ -113,7 +132,7 @@ function Hero() {
 
                 <a
                   href="/resume.pdf"
-                  download
+                  download="Anushka_Resume.pdf"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-text-primary transition-colors hover:border-accent hover:bg-surface-secondary"
                 >
                   <svg
@@ -148,14 +167,12 @@ function Hero() {
           </Reveal>
         </div>
 
-        <div className="mt-7 grid grid-cols-2 border-y border-border/80 py-4 md:mt-8 md:grid-cols-3 md:py-5">
+        <div className="mt-7 grid grid-cols-1 divide-y divide-border/80 border-y border-border/80 py-2 sm:grid-cols-3 sm:divide-y-0 md:mt-8 md:py-3">
           {expertise.map(({ title, detail, icon }, index) => (
             <div
               key={title}
-              className={`flex min-w-0 items-center gap-3 px-3 py-2 first:pl-0 md:px-4 ${
-                index === expertise.length - 1 ? "col-span-2 md:col-span-1" : ""
-              } ${
-                index > 0 ? "md:border-l md:border-border" : ""
+              className={`flex min-w-0 items-center gap-3 px-3 py-3 sm:px-4 sm:py-2 sm:first:pl-0 ${
+                index > 0 ? "sm:border-l sm:border-border" : ""
               }`}
             >
               <ExpertiseIcon kind={icon} />

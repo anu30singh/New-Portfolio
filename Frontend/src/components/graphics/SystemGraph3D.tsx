@@ -10,11 +10,11 @@ import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 
 type NodeName =
-  | "Backend"
+  | "Full Stack"
   | "Databases"
-  | "Product"
   | "DevOps"
-  | "System Architecture";
+  | "System Architecture"
+  | "APIs";
 
 type GraphNodeData = {
   name: NodeName;
@@ -24,11 +24,11 @@ type GraphNodeData = {
 type GraphPosition = GraphNodeData["position"];
 
 const nodes: GraphNodeData[] = [
-  { name: "Backend", position: [-3.15, 2.1, 0] },
-  { name: "Databases", position: [2.45, 1.5, 0] },
-  { name: "Product", position: [0, -2.85, 0] },
+  { name: "Full Stack", position: [-1.85, 1.9, 0] },
+  { name: "Databases", position: [0, -2.85, 0] },
   { name: "DevOps", position: [-2.55, -1.3, 0] },
   { name: "System Architecture", position: [0, 3.05, 0] },
+  { name: "APIs", position: [2.65, 0.45, 0] },
 ];
 
 const satelliteNodes: GraphPosition[] = [
@@ -59,24 +59,26 @@ const networkVertices: GraphPosition[] = [
 ];
 
 const networkEdges: [number, number][] = [
-  [0, 5], [0, 6], [0, 20], [1, 8], [1, 9], [1, 21],
-  [2, 13], [2, 14], [2, 23], [3, 12], [3, 22], [4, 10],
-  [4, 11], [4, 20], [5, 10], [5, 16], [6, 7], [6, 22],
-  [7, 8], [7, 23], [8, 9], [8, 23], [9, 10], [10, 11],
-  [11, 12], [11, 16], [11, 20], [12, 13], [12, 14], [12, 17],
-  [13, 14], [13, 22], [14, 15], [14, 18], [15, 16], [15, 17],
+  [0, 5], [0, 6], [0, 8], [0, 9], [0, 20], [0, 21],
+  [1, 13], [1, 14], [1, 23], [2, 12], [2, 22], [3, 10],
+  [3, 11], [3, 20], [4, 5], [4, 10], [4, 16], [5, 10],
+  [5, 16], [6, 7], [6, 22], [7, 8], [7, 23], [8, 9],
+  [8, 23], [9, 10], [10, 11], [11, 12], [11, 16],
+  [11, 20], [12, 13], [12, 14], [12, 17], [13, 14],
+  [13, 22], [14, 15], [14, 18], [15, 16], [15, 17],
   [16, 18], [17, 18], [17, 22], [18, 19], [19, 23], [18, 23],
 ];
 
 const packetEdges: [number, number][] = [
   [0, 5],
-  [1, 9],
-  [2, 14],
-  [4, 10],
+  [0, 9],
+  [1, 14],
+  [3, 10],
+  [4, 12],
 ];
 
 const connections: [number, number][] = [
-  [0, 2], [1, 2], [2, 3], [2, 4], [0, 3], [1, 4],
+  [0, 1], [1, 2], [1, 3], [0, 2], [0, 3], [0, 4], [1, 4], [3, 4],
 ];
 
 const nodeDetails: Record<NodeName, {
@@ -84,20 +86,15 @@ const nodeDetails: Record<NodeName, {
   description: string;
   technologies: string;
 }> = {
-  Backend: {
-    title: "Backend Development",
-    description: "Building application logic, backend services, and APIs.",
-    technologies: "Java · Node.js · Express · Python",
+  "Full Stack": {
+    title: "Full Stack",
+    description: "Building frontend experiences and backend services for data-driven applications.",
+    technologies: "JavaScript · Vue.js · React · FastAPI",
   },
   Databases: {
     title: "Data Systems",
-    description: "Working with relational databases and time-series data.",
-    technologies: "PostgreSQL · TimescaleDB · MongoDB",
-  },
-  Product: {
-    title: "Product & User Experience",
-    description: "Combining engineering with interface design and product thinking.",
-    technologies: "React · Vue.js · UI/UX",
+    description: "Working with relational, time-series, and analytical data.",
+    technologies: "PostgreSQL · TimescaleDB · ClickHouse",
   },
   DevOps: {
     title: "DevOps & Infrastructure",
@@ -109,17 +106,21 @@ const nodeDetails: Record<NodeName, {
     description: "Exploring how software systems fit together and scale.",
     technologies: "APIs · Databases · Distributed Systems",
   },
+  APIs: {
+    title: "API Development",
+    description: "Designing APIs that connect frontend applications with backend services.",
+    technologies: "REST · FastAPI · Node.js",
+  },
 };
 
 const nodeIconPaths: Record<NodeName, string> = {
-  Backend: "m8 8-4 4 4 4m8-8 4 4-4 4m-5 2 2-12",
+  "Full Stack": "m8 8-4 4 4 4m8-8 4 4-4 4m-5 2 2-12",
   Databases:
     "M12 3c-4.4 0-8 1.3-8 3s3.6 3 8 3 8-1.3 8-3-3.6-3-8-3Zm-8 3v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6m-16 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6",
-  Product:
-    "M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m6-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm6-7.8a4 4 0 0 1 0 7.6m2 4.2a4 4 0 0 1 2 3.5V21",
   DevOps: "M3 5h18v13H3zM8 22h8m-4-4v4",
   "System Architecture":
     "m8 8-4 4 4 4m8-8 4 4-4 4m-5 2 2-12",
+  APIs: "M4 6h16M4 12h16M4 18h16",
 };
 
 function GraphNode({

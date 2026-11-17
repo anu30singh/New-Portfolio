@@ -1,4 +1,5 @@
 
+import { siGithub } from "simple-icons";
 import Container from "../components/layout/Container";
 import Reveal from "../components/ui/Reveal";
 
@@ -9,11 +10,14 @@ const contactLinks = [
     label: "LINKEDIN",
     value: "Connect with me",
     href: "https://www.linkedin.com/in/anushka30singh/",
+    icon:
+      "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 .001-4.123 2.062 2.062 0 0 1-.001 4.123ZM7.119 20.452H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z",
   },
   {
     label: "GITHUB",
     value: "See my projects",
     href: "https://github.com/anu30singh",
+    icon: siGithub.path,
   },
 ];
 
@@ -46,14 +50,7 @@ export default function Contact() {
                 and new opportunities. Get in touch.
               </p>
 
-              <a
-                href={`mailto:${contactEmail}`}
-                className="mt-10 inline-flex items-center gap-4 rounded-full bg-[var(--highlight)] px-7 py-4 text-sm font-semibold text-[#17211F] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              >
-                Send me an email
-                <span className="text-lg">↗</span>
-              </a>
-              <p className="mt-5">
+              <p className="mt-8">
                 <a
                   href={`mailto:${contactEmail}`}
                   className="text-sm text-[var(--text-secondary)] underline decoration-[var(--accent)] underline-offset-4 transition-colors hover:text-[var(--highlight)]"
@@ -72,11 +69,19 @@ export default function Contact() {
                   rel="noreferrer"
                   className="group"
                 >
-                  <p className="font-mono text-[10px] tracking-[0.2em] text-[var(--accent)]">
+                  <p className="flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-[var(--accent)]">
+                    <svg
+                      aria-hidden="true"
+                      className="h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d={link.icon} />
+                    </svg>
                     {link.label}
                   </p>
 
-                  <div className="mt-3 flex items-center justify-between gap-3">
+                  <div className="mt-3 flex items-center justify-start gap-3">
                     <span className="text-sm text-[var(--text-primary)] transition-colors group-hover:text-[var(--highlight)]">
                       {link.value}
                     </span>
@@ -92,13 +97,6 @@ export default function Contact() {
 
         {/* Bottom footer */}
         <div className="flex flex-col justify-between gap-5 py-8 sm:flex-row sm:items-center">
-          <div>
-            <p className="font-serif text-xl text-[var(--text-primary)]">
-              A.
-            </p>
-            
-          </div>
-
           <div className="flex flex-wrap items-center gap-6">
             <span className="font-mono text-[10px] tracking-wider text-[var(--text-secondary)]">
               BUILT WITH CARE BY ANUSHKA

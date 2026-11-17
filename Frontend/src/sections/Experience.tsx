@@ -12,8 +12,23 @@ const experiences = [
     period: "May 2025 — Present",
     type: "FULL-TIME",
     summary:
-      "I build and improve software for a maritime data platform, from its databases and maps to its deployments.",
+      "I build and improve software for a maritime data platform, working across data, maps, and production systems.",
     highlights: [
+      {
+        title: "Large-scale heatmaps",
+        description:
+          "Built heatmap visualizations for datasets with 10 million points.",
+      },
+      {
+        title: "Parallel data processing",
+        description:
+          "Established distributed computing for parallel processing, reducing processing time by 80%.",
+      },
+      {
+        title: "Data platform migration",
+        description:
+          "Contributed to a data platform migration involving ClickHouse, TimescaleDB, and MinIO.",
+      },
       {
         title: "Faster database queries",
         description:
@@ -25,24 +40,14 @@ const experiences = [
           "Cut the time to show vessel tracking data in Vue.js from 15 minutes to about 30 seconds.",
       },
       {
-        title: "Data workflows",
+        title: "Data and map workflows",
         description:
-          "Kept Airflow jobs running to filter vessel data and update databases.",
+          "Maintained Airflow jobs and built import tools for KML, KMZ, Shapefile, and CSV data.",
       },
       {
-        title: "Maps and file imports",
+        title: "Production systems",
         description:
-          "Built map features and import tools for KML, KMZ, Shapefile, and CSV files.",
-      },
-      {
-        title: "Deployments and support",
-        description:
-          "Handled Docker and Linux releases and fixed issues found in production.",
-      },
-      {
-        title: "Application plans",
-        description:
-          "Planned how to move an application to FastAPI and React.",
+          "Handled on-premises deployments, troubleshot production issues, and contributed to plans to move an application to FastAPI and React.",
       },
     ],
     technologies: [
@@ -52,6 +57,8 @@ const experiences = [
       "FastAPI",
       "PostgreSQL",
       "TimescaleDB",
+      "ClickHouse",
+      "MinIO",
       "Python",
       "Airflow",
       "Docker",
@@ -65,7 +72,7 @@ const experiences = [
     period: "October 2024 — April 2025",
     type: "INTERNSHIP",
     summary:
-      "I built parts of the interface and helped the team release updates.",
+      "My first engineering role: building interfaces with a team and helping ship updates.",
     highlights: [
       {
         title: "Frontend development",
@@ -75,7 +82,7 @@ const experiences = [
       {
         title: "Releases",
         description:
-          "Helped the team share release files through AWS S3.",
+          "Deployed Docker images in offline Linux environments and shared release files through AWS S3.",
       },
       {
         title: "Teamwork",
@@ -100,7 +107,7 @@ const experiences = [
   period: "August 2023 — September 2023",
   type: "INTERNSHIP",
   summary:
-    "I explored user experience and visual design, and helped shape clear, useful interfaces.",
+  "An early role creating interface concepts and prototypes.",
   highlights: [
     {
       title: "User experience",
@@ -120,51 +127,6 @@ const experiences = [
   ],
 },
 
-];
-
-const journey = [
-  {
-    year: "2026",
-    chapter: "Learning more about how systems work.",
-    introduction:
-      "I’m building my backend skills and learning how to monitor systems and release changes safely.",
-    milestones: [
-      "Learning more about backend development",
-      "Exploring system monitoring and developer tools",
-      "Learning DuckDB and Parquet for data analysis",
-      "Using GitHub Actions to automate software releases",
-    ],
-  },
-  {
-    year: "2025",
-    chapter: "From university to full-time work.",
-    introduction:
-      "After graduating, I started building software for real users. I learned that products need to be fast, reliable, and easy to use—not just functional.",
-    milestones: [
-      "Graduated with a B.Tech in Information Technology",
-      "Started professional software development",
-    ],
-  },
-  {
-    year: "2024",
-    chapter: "My first steps into shipping software.",
-    introduction:
-      "During my internship, I built interfaces and helped release updates. I learned how software moves from a developer’s computer to its users.",
-    milestones: [
-      "Joined Dfy Graviti Technologies as a Software Development Engineer Intern",
-      "Built reusable interfaces and supported deployment workflows",
-    ],
-  },
-  {
-    year: "2023",
-    chapter: "My first steps in design.",
-    introduction:
-      "A design internship taught me to think about how people use software. I still use that perspective in my engineering work.",
-    milestones: [
-      "Explored user experience, visual communication, and prototyping",
-      "Started connecting thoughtful design with practical engineering",
-    ],
-  },
 ];
 
 export default function Experience() {
@@ -187,7 +149,7 @@ export default function Experience() {
         <Reveal>
           <div className="mb-12">
             <p className="mb-4 font-mono text-xs tracking-[0.25em] text-[var(--highlight)]">
-              04 / MY JOURNEY
+              03 / MY JOURNEY
             </p>
 
             <h2 className="max-w-3xl font-serif text-4xl leading-tight text-[var(--text-primary)] sm:text-5xl md:text-6xl">
@@ -199,7 +161,7 @@ export default function Experience() {
             </h2>
 
             <p className="mt-5 max-w-xl text-base leading-7 text-[var(--text-secondary)]">
-              From my first design role to building software for real users.
+              From my first engineering role to improving a live maritime data platform.
             </p>
           </div>
         </Reveal>
@@ -215,9 +177,9 @@ export default function Experience() {
             style={{ scaleY: prefersReducedMotion ? 1 : timelineProgress }}
           />
 
-          <div className="space-y-6">
-            {journey.map((chapter, index) => (
-              <Reveal key={chapter.year}>
+          <div className="space-y-5">
+            {experiences.map((experience, index) => (
+              <Reveal key={experience.number}>
                 <motion.article
                   initial={
                     prefersReducedMotion
@@ -236,7 +198,7 @@ export default function Experience() {
                     damping: 18,
                     delay: prefersReducedMotion ? 0 : index * 0.06,
                   }}
-                  className="relative grid gap-5 pl-12 md:grid-cols-[112px_minmax(0,1fr)] md:gap-8 md:pl-0"
+                  className="relative grid gap-4 pl-12 md:grid-cols-[190px_minmax(0,1fr)] md:gap-8 md:pl-0"
                 >
                   <motion.div
                     className={`absolute left-3 top-2 z-10 flex h-4 w-4 items-center justify-center rounded-full border bg-[var(--background)] md:left-[13px] ${
@@ -259,8 +221,8 @@ export default function Experience() {
                   </motion.div>
 
                   <div className="pt-1 md:pl-12">
-                    <span className="font-mono text-lg text-[var(--accent)]">
-                      {chapter.year}
+                    <span className="font-mono text-xs leading-5 text-[var(--accent)] sm:text-sm">
+                      {experience.period}
                     </span>
                     {index === 0 && (
                       <motion.span
@@ -276,12 +238,12 @@ export default function Experience() {
                             : { duration: 2.2, repeat: Infinity }
                         }
                       >
-                        NOW
+                        CURRENT
                       </motion.span>
                     )}
                   </div>
 
-                  <div className="group/chapter relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]/70 p-5 transition-colors hover:border-[var(--accent)]/70 sm:p-7 md:p-8">
+                  <div className="group/experience relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]/70 p-5 transition-colors hover:border-[var(--accent)]/70 sm:p-7">
                     <motion.div
                       aria-hidden="true"
                       className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[var(--highlight)]/10 blur-3xl"
@@ -290,17 +252,28 @@ export default function Experience() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: index * 0.08 }}
                     />
-                    <h3 className="font-serif text-2xl text-[var(--text-primary)] sm:text-3xl">
-                      {chapter.chapter}
-                    </h3>
-                    <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--text-secondary)] sm:text-base">
-                      {chapter.introduction}
+                    <div className="relative flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <h3 className="font-serif text-xl text-[var(--text-primary)] sm:text-2xl">
+                          {experience.role}
+                        </h3>
+                        <p className="mt-1 text-sm text-[var(--text-secondary)]">
+                          {experience.company}
+                        </p>
+                      </div>
+                      <span className="rounded-full border border-[var(--border)] px-3 py-1 font-mono text-[9px] tracking-[0.12em] text-[var(--text-secondary)]">
+                        {experience.type}
+                      </span>
+                    </div>
+
+                    <p className="relative mt-4 max-w-3xl text-sm leading-6 text-[var(--text-secondary)]">
+                      {experience.summary}
                     </p>
 
-                    <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                      {chapter.milestones.map((milestone) => (
+                    <ul className="relative mt-5 grid gap-4 sm:grid-cols-2">
+                      {experience.highlights.map((item) => (
                         <motion.li
-                          key={milestone}
+                          key={item.title}
                           initial={
                             prefersReducedMotion
                               ? false
@@ -314,100 +287,34 @@ export default function Experience() {
                             damping: 18,
                             delay: prefersReducedMotion ? 0 : index * 0.08,
                           }}
-                          className="flex items-start gap-3 rounded-xl border border-[var(--border)]/70 bg-[var(--background)]/40 p-3 text-sm leading-6 text-[var(--text-primary)]"
+                          className="text-sm leading-6"
                         >
-                          <span
-                            aria-hidden="true"
-                            className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--highlight)]"
-                          />
-                          {milestone}
+                          <h4 className="font-semibold text-[var(--text-primary)]">
+                            {item.title}
+                          </h4>
+                          <p className="mt-1 text-[var(--text-secondary)]">
+                            {item.description}
+                          </p>
                         </motion.li>
                       ))}
                     </ul>
+
+                    <div className="relative mt-5 flex flex-wrap gap-2 border-t border-[var(--border)] pt-4">
+                      {experience.technologies.map((technology) => (
+                        <span
+                          key={technology}
+                          className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--text-primary)]"
+                        >
+                          {technology}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </motion.article>
               </Reveal>
             ))}
           </div>
         </div>
-
-        <details className="group mt-10 rounded-2xl border border-[var(--border)] bg-[var(--surface)]/40">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
-            <span>
-              <span className="block font-serif text-xl text-[var(--text-primary)]">
-                Want more detail?
-              </span>
-              <span className="mt-1 block text-sm text-[var(--text-secondary)]">
-                See what I worked on and the tools I used in each role.
-              </span>
-            </span>
-            <span
-              aria-hidden="true"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-[var(--accent)] transition-transform group-open:rotate-45"
-            >
-              +
-            </span>
-          </summary>
-
-          <div className="space-y-4 border-t border-[var(--border)] p-5 sm:p-6">
-            {experiences.map((experience) => (
-              <details
-                key={experience.number}
-                className="group/role rounded-xl border border-[var(--border)] bg-[var(--background)]/40"
-              >
-                <summary className="flex cursor-pointer list-none flex-col justify-between gap-3 p-4 sm:flex-row sm:items-center">
-                  <span>
-                    <span className="block font-serif text-lg text-[var(--text-primary)]">
-                      {experience.role}
-                    </span>
-                    <span className="mt-1 block text-sm text-[var(--text-secondary)]">
-                      {experience.company}
-                    </span>
-                  </span>
-                  <span className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-[var(--accent)]">
-                      {experience.period}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="text-[var(--accent)] transition-transform group-open/role:rotate-45"
-                    >
-                      +
-                    </span>
-                  </span>
-                </summary>
-
-                <div className="border-t border-[var(--border)] p-4">
-                  <p className="text-sm leading-7 text-[var(--text-secondary)]">
-                    {experience.summary}
-                  </p>
-                  <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-                    {experience.highlights.map((item) => (
-                      <li key={item.title}>
-                        <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                          {item.title}
-                        </h4>
-                        <p className="mt-1 text-sm leading-6 text-[var(--text-secondary)]">
-                          {item.description}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {experience.technologies.map((technology) => (
-                      <span
-                        key={technology}
-                        className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--text-primary)]"
-                      >
-                        {technology}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </details>
-            ))}
-          </div>
-        </details>
 
       </Container>
     </section>

@@ -1,6 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import Container from "./Container";
 import Button from "../ui/Button";
+
+const links = [
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#work", label: "Projects" },
+  { href: "#community", label: "Community" },
+  { href: "#blog", label: "Writing" },
+  { href: "#contact", label: "Contact" },
+];
 
 type NavbarProps = {
   theme: "dark" | "light";
@@ -9,14 +19,31 @@ type NavbarProps = {
 
 function Navbar({ theme, onToggleTheme }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const links = [
-    { href: "#work", label: "Projects" },
-    { href: "#about", label: "About" },
-    { href: "#experience", label: "Experience" },
-    { href: "#community", label: "Community" },
-    { href: "#blog", label: "Writing" },
-    { href: "#contact", label: "Contact" },
-  ];
+  const [activeLink, setActiveLink] = useState<string | null>(null);
+
+  useEffect(() => {
+    const sections = links
+      .map(({ href }) => document.querySelector(href))
+      .filter((section): section is Element => section !== null);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const activeSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (first, second) =>
+              first.boundingClientRect.top - second.boundingClientRect.top
+          )[0];
+
+        if (activeSection) {
+          setActiveLink(`#${activeSection.target.id}`);
+        }
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
@@ -63,13 +90,31 @@ function Navbar({ theme, onToggleTheme }: NavbarProps) {
 
           <div className="hidden items-center gap-8 md:flex">
             {links.map((link) => (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-text-secondary transition-colors hover:text-accent"
+                onClick={() => setActiveLink(link.href)}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.96 }}
+                className="group relative rounded-full px-3 py-2 text-sm text-text-secondary transition-colors hover:text-text-primary"
               >
-                {link.label}
-              </a>
+                {activeLink === link.href && (
+                  <motion.span
+                    layoutId="navbar-active-section"
+                    className="absolute inset-0 rounded-full bg-surface-secondary"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                <span className="relative z-10">{link.label}</span>
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-highlight transition-transform duration-300 group-hover:scale-x-100"
+                />
+              </motion.a>
             ))}
           </div>
 
@@ -113,8 +158,15 @@ function Navbar({ theme, onToggleTheme }: NavbarProps) {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm text-text-secondary transition-colors hover:bg-surface-secondary hover:text-text-primary"
+                onClick={() => {
+                  setActiveLink(link.href);
+                  setMobileMenuOpen(false);
+                }}
+                className={`rounded-lg px-3 py-2.5 text-sm transition-colors hover:bg-surface-secondary hover:text-text-primary ${
+                  activeLink === link.href
+                    ? "bg-surface-secondary text-text-primary"
+                    : "text-text-secondary"
+                }`}
               >
                 {link.label}
               </a>

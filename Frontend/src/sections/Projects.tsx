@@ -169,7 +169,7 @@ export default function Projects() {
         <Reveal>
           <div className="mb-14">
             <p className="mb-4 font-mono text-xs tracking-[0.25em] text-[var(--highlight)]">
-              02 / PROJECTS
+              04 / PROJECTS
             </p>
 
             <h2 className="max-w-3xl font-serif text-4xl leading-tight text-[var(--text-primary)] sm:text-5xl md:text-6xl">
